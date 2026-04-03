@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request
 import pickle
 import os
-import subprocess
 
 MODEL_PATH = "phishing.pkl"
 
+# Load model safely
+if not os.path.exists(MODEL_PATH):
+    raise FileNotFoundError("phishing.pkl not found!")
 
 with open(MODEL_PATH, "rb") as f:
     data = pickle.load(f)
@@ -32,11 +34,12 @@ def index():
 
     if request.method == "POST":
         url = request.form.get("url", "")
-
         if url:
             result, score = predict_url(url)
 
     return render_template("index.html", result=result, score=score, url=url)
 
+# IMPORTANT for Render
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
