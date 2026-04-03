@@ -145,12 +145,12 @@
     {% if result %}
     <div class="result">
 
-      <!-- Badge -->
+      
       <div class="badge {% if 'Legitimate' in result %}legit{% else %}phish{% endif %}">
         {{ result }}
       </div>
 
-      <!-- URL -->
+      
       <p>
         <strong>URL:</strong>
         <a href="{{ url }}" target="_blank" class="result-link">
@@ -158,7 +158,7 @@
         </a>
       </p>
 
-      <!-- Confidence -->
+      
       {% if score is not none %}
         <p class="meta">
           <strong>Confidence:</strong> {{ score }}%
