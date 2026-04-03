@@ -5,8 +5,6 @@ import subprocess
 
 MODEL_PATH = "phishing.pkl"
 
-if not os.path.exists(MODEL_PATH):
-    subprocess.run(["python", "model.py"], check=True)
 
 with open(MODEL_PATH, "rb") as f:
     data = pickle.load(f)
