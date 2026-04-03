@@ -4,7 +4,6 @@ import os
 
 MODEL_PATH = "phishing.pkl"
 
-# Load model safely
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError("phishing.pkl not found!")
 
@@ -21,7 +20,7 @@ def predict_url(url):
     prediction = model.predict(vectorized)[0]
     probability = model.predict_proba(vectorized)[0]
 
-    result = "Phishing 🚨" if prediction == 1 else "Legitimate ✅"
+    result = "Phishing " if prediction == 1 else "Legitimate "
     confidence = round(max(probability) * 100, 2)
 
     return result, confidence
