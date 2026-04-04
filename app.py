@@ -20,7 +20,10 @@ def predict_url(url):
     prediction = model.predict(vectorized)[0]
     probability = model.predict_proba(vectorized)[0]
 
-    result = "Phishing " if prediction == 1 else "Legitimate "
+    if prediction == 1:
+         result = "Phishing " 
+    else :
+         result = "Legitimate "
     confidence = round(max(probability) * 100, 2)
 
     return result, confidence
